@@ -52,12 +52,9 @@ namespace JurassicPark
           {
             Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} pounds and lives in enclosure {d.EnclosureNumber}");
           }
-
           Console.WriteLine("Which dinosaur would you like to transfer?");
           var dinoName = Console.ReadLine().ToLower();
-          Console.WriteLine($"Where do you want to put {dinoName}?");
-          var newNumber = int.Parse(Console.ReadLine());
-          dinosaur.TransferDinosaur(dinoName, newNumber);
+          dinosaur.TransferDinosaur(dinoName);
 
         }
         else if (input == "view")
@@ -71,16 +68,7 @@ namespace JurassicPark
           }
           else if (viewInput == "diet")
           {
-            Console.WriteLine("Do you want to see (HERBIVORE) or (CARNIVORE)?");
-            var dietInput = Console.ReadLine().ToLower();
-            if (dietInput == "herbivore")
-            {
-              Console.WriteLine("These are the herbivores");
-            }
-            else if (dietInput == "carnivore")
-            {
-              Console.WriteLine("These are the carnivores");
-            }
+            dinosaur.DietSummary();
           }
           else if (viewInput == "all")
           {

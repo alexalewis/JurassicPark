@@ -49,21 +49,36 @@ namespace JurassicPark
 
     }
 
-    public void TransferDinosaur(string name, int enclosure)
+    public void TransferDinosaur(string name)
     {
-       = Dinosaurs.First(Dinosaurs => Dinosaurs.Name == name).EnclosureNumber;
-      Console.WriteLine("Which dinosaur would you like to transfer?");
-      var dinoName = Console.ReadLine().ToLower();
-      Console.WriteLine($"Where do you want to put {dinoName}?");
+      var dinoToMove = Dinosaurs.IndexOf(Dinosaurs.First(name => Dinosaurs.Contains(name)));
+      Console.WriteLine($"Where do you want to put them?");
       var newNumber = int.Parse(Console.ReadLine());
+      Dinosaurs[dinoToMove].EnclosureNumber = newNumber;
 
     }
-    public void ThreeHeaviest(int weight)
+    public void ThreeHeaviest()
     {
-      var dinoWeight = Dinosaurs.OrderByDescending(Dinosaurs => Dinosaurs.Weight == weight);
+      var heaviestDinos = (Dinosaurs.OrderByDescending(ThreeHeaviest => ThreeHeaviest.Weight).Take(3));
+      foreach (var d in heaviestDinos)
+      {
+        Console.WriteLine($"The {d.Name} weighs {d.Weight} pounds");
+      }
+    }
 
-      Console.WriteLine($"The three heaviest dinosaurs are {dinoWeight}");
+    public void DietSummary(string diet)
+    {
+      var dinoHerbs = Dinosaurs.Sum(DietType => diet.Contains("herbivore"));
+      foreach (var h in dinoHerbs)
+      {
+        Console.WriteLine($"There are a total of {dinoHerbs} herbivores in Jurassic Park!");
+      }
 
+      var dinoCarns = Dinosaurs.Sum(DietType => diet.Contains("carnivores"));
+      foreach (var c in dinoCarns)
+      {
+        Console.WriteLine($"There are a total of {dinoCarns} carnivores in Jurassic Park!");
+      }
 
     }
   }
