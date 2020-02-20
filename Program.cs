@@ -38,7 +38,7 @@ namespace JurassicPark
           Console.WriteLine("Current dinosaurs are: ");
           foreach (var d in dinosaur.Dinosaurs)
           {
-            Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} and lives in enclosure {d.EnclosureNumber}");
+            Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} pounds and lives in enclosure {d.EnclosureNumber}");
           }
 
           Console.WriteLine("Which dinosaur would you like to remove?");
@@ -47,10 +47,18 @@ namespace JurassicPark
         }
         else if (input == "transfer")
         {
+          Console.WriteLine("Current dinosaurs are: ");
+          foreach (var d in dinosaur.Dinosaurs)
+          {
+            Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} pounds and lives in enclosure {d.EnclosureNumber}");
+          }
+
           Console.WriteLine("Which dinosaur would you like to transfer?");
-          Console.ReadLine().ToLower();
-          Console.WriteLine("Which enclosure would you like to transfer to?");
-          Console.ReadLine().ToLower();
+          var dinoName = Console.ReadLine().ToLower();
+          Console.WriteLine($"Where do you want to put {dinoName}?");
+          var newNumber = int.Parse(Console.ReadLine());
+          dinosaur.TransferDinosaur(dinoName, newNumber);
+
         }
         else if (input == "view")
         {
@@ -59,7 +67,7 @@ namespace JurassicPark
 
           if (viewInput == "three")
           {
-            Console.WriteLine("These are the 3 heaviest dinosaurs");
+            dinosaur.ThreeHeaviest();
           }
           else if (viewInput == "diet")
           {
@@ -78,7 +86,7 @@ namespace JurassicPark
           {
             foreach (var d in dinosaur.Dinosaurs)
             {
-              Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} and lives in enclosure {d.EnclosureNumber}");
+              Console.WriteLine($"{d.DateAcquired}: {d.Name} is a {d.DietType}, weighs {d.Weight} pounds and lives in enclosure {d.EnclosureNumber}");
             }
 
           }

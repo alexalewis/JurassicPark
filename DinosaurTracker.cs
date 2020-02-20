@@ -26,7 +26,6 @@ namespace JurassicPark
 
     public void RemoveDinosaur(string name)
     {
-      // Sightings.RemoveAll(sighting => sighting.WhatISaw == what);
 
       var thingToRemove = Dinosaurs.Where(Dinosaurs => Dinosaurs.Name == name).ToList();
       if (thingToRemove.Count() > 1)
@@ -48,9 +47,25 @@ namespace JurassicPark
         Dinosaurs.Remove(thingToRemove.First());
       }
 
-
     }
 
+    public void TransferDinosaur(string name, int enclosure)
+    {
+       = Dinosaurs.First(Dinosaurs => Dinosaurs.Name == name).EnclosureNumber;
+      Console.WriteLine("Which dinosaur would you like to transfer?");
+      var dinoName = Console.ReadLine().ToLower();
+      Console.WriteLine($"Where do you want to put {dinoName}?");
+      var newNumber = int.Parse(Console.ReadLine());
 
+    }
+    public void ThreeHeaviest(int weight)
+    {
+      var dinoWeight = Dinosaurs.OrderByDescending(Dinosaurs => Dinosaurs.Weight == weight);
+
+      Console.WriteLine($"The three heaviest dinosaurs are {dinoWeight}");
+
+
+    }
   }
 }
+
